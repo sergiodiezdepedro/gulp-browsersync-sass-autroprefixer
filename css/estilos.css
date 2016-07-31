@@ -1,0 +1,118 @@
+@import 'https://fonts.googleapis.com/css?family=Lato';
+@import 'https://fonts.googleapis.com/css?family=Cutive+Mono';
+*, *:after, *:before {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+body {
+  background: #212121;
+  color: #EEEEEE;
+  font-family: "Lato", sans-serif;
+}
+
+footer {
+  border-top: 0.1875em solid #212121;
+  padding: 1.5em;
+}
+
+header {
+  border-bottom: 0.1875em solid #212121;
+  padding: 2em;
+}
+
+footer,
+header {
+  background: #757575;
+  text-align: center;
+  text-shadow: 1px 1px 5px #212121;
+}
+
+hr {
+  border: 0.4375em solid #EEEEEE;
+}
+
+img {
+  border-radius: 0.3125em;
+  box-shadow: 4px 4px 10px #000;
+  height: auto;
+  max-width: 100%;
+}
+
+.contenedor {
+  margin: 3em auto;
+  width: 75%;
+}
+
+.contenedor a {
+  color: #EF6C00;
+  text-decoration: none;
+}
+
+.contenedor a:hover {
+  text-decoration: underline;
+}
+
+.contenedor em {
+  padding: 0 0.2em;
+}
+
+.contenedor mark {
+  background: #E91E63;
+  border-radius: 0.1875em;
+  color: #EEEEEE;
+  margin: 0 0.3em;
+  padding: 0.1em 0.3em;
+}
+
+.contenedor p {
+  line-height: 1.4375em;
+  margin: 1em 0;
+}
+
+.contenedor ol {
+  list-style: upper-roman;
+  margin: 1.5em 2.5em;
+}
+
+.contenedor ol li {
+  line-height: 1.4375em;
+  padding-left: 0.3em;
+  padding-bottom: 1em;
+}
+
+.contenedor ol li:last-child {
+  padding-bottom: 0;
+}
+
+.contenedor .codigo {
+  background: #EEEEEE;
+  border-radius: 3px;
+  color: #212121;
+  font-family: "Cutive Mono", monospace;
+  font-size: 1.2em;
+  margin: 1.5em;
+}
+
+.contenedor .codigo p {
+  padding: 0.6em;
+}
+
+.contenedor .imagen {
+  margin: 2em auto;
+  text-align: center;
+}
+
+.contenedor .importante {
+  border: 0.125em dotted #E91E63;
+}
+
+.contenedor .importante p {
+  margin: 0.8em 1em;
+}

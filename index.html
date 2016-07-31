@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <title>Mundo Automático</title>
+        <link rel="stylesheet" type="text/css" href="css/estilos.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="img/manifest.json">
+        <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <meta name="msapplication-config" content="img/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        <header>
+            <h1>Construyendo un mundo automático</h1>
+        </header>
+        <hr>
+        <div class="contenedor">
+            <p>En este documento se describe brevemente el modo y manera de automatizar ciertas faenas rutinarias, inherentes a la labor de maquetar y programar una página web, con el apoyo del preprocesador
+                <a href="http://sass-lang.com/">Sass</a>. Asimismo, se contempla la necesaria labor de refresco y actualización del navegador, para ver los efectos tras cada cambio introducido.</p>
+            <p>Para afrontar estas cuestiones se propone la utilización de
+                <a href="http://gulpjs.com/">Gulp.js</a>, que es un sistema de construcción que permite automatizar un sinnúmero de tareas comunes de desarrollo.</p>
+            <p>
+                <mark>Gulp</mark>
+                funciona sobre la plataforma de
+                <a href="https://nodejs.org/">Node.js</a>, por lo que es indispensable tenerla implementada en nuestro ordenador. En el enlace indicado se explica cómo se instala en cada sistema operativo.</p>
+            <p>Tras ello, hay que instalar Gulp de forma global en el sistema, mediante la siguiente sentencia:</p>
+            <div class="codigo">
+                <p>$ sudo npm install -g gulp</p>
+            </div>
+            <p>
+                <small>El comando
+                    <em>sudo</em>
+                    es obligatorio en Linux y Mac. En Windows no es necesario.</small>
+            </p>
+            <p>En la carpeta del proyecto se crea el archivo
+                <mark>gulpfile.js</mark>, en el que se programa todo lo necesario para que funcionen las tareas automatizadas. Después retomaremos este archivo.</p>
+            <p>
+                Es indispensable iniciar el protocolo de Node.js para introducir los datos del proyecto. Mediante este comando:
+            </p>
+            <div class="codigo">
+                <p>$ npm init</p>
+            </div>
+            <p>Con esto,
+                <mark>npm</mark>
+                debe haber creado un archivo llamado
+                <mark>package.json</mark>, de gran utilidad. En un momento veremos por qué.</p>
+            <p>Lo que resta es instalar los paquetes necesarios para llevar a cabo las rutinas. En este ejemplo son los que siguen, con su correspondiente comando:</p>
+            <div class="codigo">
+                <p>$ npm install --save-dev gulp</p>
+            </div>
+            <div class="codigo">
+                <p>$ npm install --save-dev gulp-sass</p>
+            </div>
+            <div class="codigo">
+                <p>$ npm install --save-dev gulp-autoprefixer</p>
+            </div>
+            <p>Después de este proceso, además de disponer de las herramientas necesarias, en el archivo
+                <em>package.json</em>
+                se han añadido estas dependencias como requisitos. Esto se traduce en que si se vuelve a utilizar esta receta en otro proyecto, con copiar/pegar los archivos
+                <em>package.json</em>
+                y
+                <em>gulpfile.js</em>, con el comando:</p>
+            <div class="codigo">
+                <p>$ npm install</p>
+            </div>
+            <p>Se instalarán los paquetes, sin más operaciones.</p>
+            <div class="importante">
+                <p>Además de las dependencias de los paquetes de Gulp, en esta receta es necesario el recurso de
+                    <a href="https://www.browsersync.io/">Browsersync</a>, que es el que levanta un servidor y actualiza todo en tiempo real. Hay que incluirlo como dependencia en el archivo
+                    <em>gulpfile.js</em>, pero no hay paquete gulp para él. Hay que instalar globalmente en el sistema Browsersync mediante el comando:
+                    <mark>npm install -g browser-sync</mark>.</p>
+            </div>
+            <p>Esta receta de Gulp contempla las siguientes tareas:</p>
+            <ol>
+                <li>Crear un servidor estático mediante
+                    <mark>browser-sync</mark>, que monitoriza los cambios que se producen en los archivos
+                    <em>.html</em>
+                    y
+                    <em>.scss</em>
+                    y refresca automáticamente la vista del navegador.</li>
+                <li>
+                    Mediante
+                    <mark>gulp-sass</mark>
+                    se compila el archivo para convertirlo en
+                    <em>.css</em>. Se indica mediante una opción que la salida del archivo
+                    <em>.css</em>
+                    sea
+                    <em>expanded</em>, es decir, el estilo habitual de presentar los archivos
+                    <em>.css</em>.
+                </li>
+                <li>
+                    Una vez compilado el
+                    <em>.css</em>
+                    se le añaden los prefijos de los navegadores, cuando es pertinente, mediante
+                    <mark>gulp-autoprefixer</mark>.
+                </li>
+                <li>
+                    La función nativa de gulp
+                    <mark>dest</mark>
+                    envía el archivo
+                    <em>.css</em>
+                    totalmente procesado a la carpeta de destino que se indique.
+                </li>
+                <li>
+                    Browsersync refresca en el navegador los cambios que se han realizado en el archivo
+                    <em>.css</em>.
+                </li>
+            </ol>
+            <p>Tras todos estos aconteceres, si todo ha ido bien y no hay errores en el código, todo se inicia con la palabra mágica:</p>
+            <div class="codigo">
+                <p>$ gulp</p>
+            </div>
+            <div class="imagen">
+                <img src="img/consola.png" alt="Consola">
+            </div>
+            <p>La receta de Gulp utilizada para automatizar las tareas está parcialmente basada en el siguiente enlace:</p>
+            <p>
+                <a href="https://www.browsersync.io/docs/gulp#gulp-sass-css">Página oficial de Browsersync</a>
+                <p>Se han añadido algunas líneas de código procedentes de las enseñanzas de Álvaro Felipe, de
+                    <a href="http://escuela.digital/">Escuela Digital</a>.</p>
+            </div>
+            <hr>
+            <footer>
+                <h3>Diseño y programación | Sergio Díez de Pedro</h3>
+            </footer>
+        </body>
+    </html>
